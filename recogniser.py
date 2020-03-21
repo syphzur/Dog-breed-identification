@@ -14,12 +14,10 @@ learner = cnn_learner(data, models.resnet34,  metrics=[accuracy, error_rate])
 
 learner.load("resnet34-fit5-stage2")
 
-""" imgPath = Path(str(modelPath) + "\\test\\n02085620-Chihuahua")
-for img in os.listdir(imgPath):
-    img = open_image(imgPath)
+imgPath = Path(str(modelPath) + "\\test\\n02085620-Chihuahua\\")
+for x in os.listdir(imgPath):
+
+    img = open_image(str(imgPath) + '\\' + x)
     pred_class, pred_idx, outputs = learner.predict(img)
-    print(pred_class) """
-img = open_image(r"D:\POLITECHNIKA\sem6\biai\Dogs\stanford-dogs-dataset-traintest\cropped\test\n02115641-dingo\n02115641_10506.jpg")
-pred_class, pred_idx, outputs = learner.predict(img)
-print(pred_class) 
+    print(pred_class) 
 # %%
