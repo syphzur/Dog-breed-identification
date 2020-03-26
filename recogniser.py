@@ -14,10 +14,22 @@ learner = cnn_learner(data, models.resnet34,  metrics=[accuracy, error_rate])
 
 learner.load("resnet34-fit5-stage2")
 
-imgPath = Path(str(modelPath) + "\\test\\n02085620-Chihuahua\\")
+imgPath = Path(str(modelPath) + "\\test")
+correct = 0
+wrong = 0
 for x in os.listdir(imgPath):
 
-    img = open_image(str(imgPath) + '\\' + x)
-    pred_class, pred_idx, outputs = learner.predict(img)
-    print(pred_class) 
+	folfer = Path(str(imgPath) + '\\' + x)
+	
+	for y in os.listdir(folfer):
+		img = open_image(str(folfer) + '\\' + y)
+		pred_class, pred_idx, outputs = learner.predict(img)
+		print(pred_class) 
+		if x[0:9]==y[0:9]:
+			correct += 1
+		else:
+			wrong +=1
+		
+print("Correct", correct, "Wrong", wrong) 
+		
 # %%
