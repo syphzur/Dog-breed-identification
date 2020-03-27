@@ -15,7 +15,6 @@ learner.save("resnet34-fit5")
 learner.lr_find()
 learner.recorder.plot()
 
-//ddd
 learner.unfreeze()
 learner.fit_one_cycle(3, max_lr=slice(1e-6,1e-2))
 learner.save("resnet34-fit5-stage2")
