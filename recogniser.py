@@ -20,15 +20,14 @@ wrong = 0
 for x in os.listdir(imgPath):
 
 	folfer = Path(str(imgPath) + '\\' + x)
-	
+	print("Folder:" + x)
 	for y in os.listdir(folfer):
 		img = open_image(str(folfer) + '\\' + y)
 		pred_class, pred_idx, outputs = learner.predict(img)
-		print(pred_class) 
-		if x[0:9]==y[0:9]:
+		if x[0:9]==str(pred_class)[0:9]:
 			correct += 1
 		else:
-			wrong +=1
+			wrong += 1
 		
 print("Correct", correct, "Wrong", wrong) 
 		
