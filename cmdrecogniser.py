@@ -6,7 +6,7 @@ import sys
 import os.path
 import imghdr
 
-if len(sys.argv) >= 1:
+if len(sys.argv) > 1:
 	scriptPath = Path(os.path.dirname(os.path.realpath(__file__)))
 
 	modelPath = Path(str(scriptPath.parent) + '\\stanford-dogs-dataset-traintest\\cropped') 
@@ -17,8 +17,7 @@ if len(sys.argv) >= 1:
 
 	learner.load("resnet34-fit5-stage2")
 
-	#imgPath = Path(sys.argv[1])
-	imgPath = Path(r"C:\Users\trolo\Desktop\confusion matrix.pdf")
+	imgPath = Path(sys.argv[1])
 
 	if str(imghdr.what(imgPath)) != "None":
 		img = open_image(imgPath, size=224)
