@@ -20,7 +20,7 @@ if len(sys.argv) > 1:
 	imgPath = Path(sys.argv[1])
 
 	if str(imghdr.what(imgPath)) != "None":
-		img = open_image(imgPath, size=224)
+		img = open_image(imgPath)
 		pred_class, pred_idx, outputs = learner.predict(img)
 		print(pred_class) 
 	else:
