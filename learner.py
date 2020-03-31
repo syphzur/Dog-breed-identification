@@ -7,11 +7,10 @@ modelPath = Path(str(scriptPath.parent) + '\\stanford-dogs-dataset-traintest\\cr
 np.random.seed(2)
 data = ImageDataBunch.from_folder(modelPath, train='train', valid_pct=0.2, size=224, num_workers=0)
 data.normalize(imagenet_stats)
-data.show_batch(rows=5, figsize=(25,25))
 
 learner = cnn_learner(data, models.resnet34,  metrics=[accuracy, error_rate])
+learner.fit(5)
 learner.save("resnet34-fit5")
-
 learner.lr_find()
 learner.recorder.plot()
 
@@ -21,6 +20,8 @@ learner.save("resnet34-fit5-stage2")
 
 interp = ClassificationInterpretation.from_learner(learner)
 interp.plot_confusion_matrix(figsize = (40,40), dpi = 150)
+interp.plot_top_losses(3, figsize=(25,25))
+interp.most_confused(5)
 
 
 
